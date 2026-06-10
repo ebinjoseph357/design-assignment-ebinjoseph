@@ -1,32 +1,69 @@
-module universal_shift_register(
-    input clk,
-    input reset,
-    input S1,
-    input S0,
-    input SR_in,          
-    input SL_in,          
-    input [3:0] D,        
-    output reg [3:0] Q
+module universal_shift_register (
+    input        clk,
+    input        rst,
+    input        sid,
+    input  [3:0] pid,
+    input        shift,
+    input        load,
+    input  [1:0] mode,
+
+    output reg [3:0] pout,
+    output           sout
 );
 
-always @(posedge clk or posedge reset)
+reg [3:0] q;
+
+always @(posedge clk or posedge rst)
 begin
-    if(reset)
-        Q <= 4'b0000;
+    if (rst)
+    begin
+        q <= 4'b0000;
+    end
     else
     begin
-        case({S1,S0})
+        case(mode)
 
-            2'b00: Q <= Q;                         
+           
+            2'b00:
+            begin
+                if (shift)
+                    q <= {sid, q[3:1]};   
+            end
 
-            2'b01: Q <= {SR_in, Q[3:1]};          
+            
+            2'b01:
+            begin
+                if (shift)
+                    q <= {sid, q[3:1]};  
+            end
 
-            2'b10: Q <= {Q[2:0], SL_in};           
+            2'b10:
+            begin
+                if (load)
+                    q <= pid;            
+                else if (shift)
+                    q <= {1'b0, q[3:1]}; 
+            end
 
-            2'b11: Q <= D;                        
+            
+            2'b11:
+            begin
+                if (load)
+                    q <= pid;            
+            end
 
+            default:
+                q <= q;
         endcase
     end
 end
 
+always @(*)
+begin
+    pout = q;
+end
+
+assign sout = q[0];
+
 endmodule
+
