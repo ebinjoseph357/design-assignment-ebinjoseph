@@ -1,0 +1,3 @@
+<img width="1576" height="862" alt="Screenshot 2026-06-10 202029" src="https://github.com/user-attachments/assets/e8000286-ecfe-4585-91e8-8bb2096a18f8" />
+
+A Ripple Carry Adder (RCA) is a digital circuit used to add two binary numbers. It consists of multiple full adders connected in series, where the carry output of one stage becomes the carry input of the next stage. The carry signal propagates (or "ripples") through each full adder from the least significant bit (LSB) to the most significant bit (MSB). Its main disadvantage is the propagation delay caused by waiting for the carry to pass through all stages.
