@@ -1,0 +1,3 @@
+<img width="1117" height="537" alt="image" src="https://github.com/user-attachments/assets/3d81fe12-73a8-4a0c-9141-e1858d361828" />
+
+A FIFO (First In First Out) is a memory buffer used for temporary data storage where the first data written into the buffer is the first data read out. FIFOs are commonly used in digital systems for data buffering, data transfer, and communication between hardware modules. This design implements a synchronous FIFO with write and read control signals along with full and empty status flags to indicate the current state of the buffer. The simulation verifies correct data storage and retrieval while maintaining the FIFO principle.
